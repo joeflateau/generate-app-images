@@ -1,0 +1,22 @@
+{
+  "name": "generate-app-images",
+  "version": "1.0.0",
+  "description": "Generate images for an ionic/cordova app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeflateau/generate-app-images.git"
+  },
+  "author": "Joe Flateau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeflateau/generate-app-images/issues"
+  },
+  "homepage": "https://github.com/joeflateau/generate-app-images#readme",
+  "dependencies": {
+    "canvas": "^1.6.9"
+  }
+}
