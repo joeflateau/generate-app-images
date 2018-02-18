@@ -2,8 +2,13 @@ const Canvas = require("canvas");
 const Image = Canvas.Image;
 const fs = require("fs");
 
-function writeImages(source = "./images/icon-1024.png", fillColor = "") {
-  const img = openImage(source);
+const writeImageDefaults = { source: "./images/", fillColor: "", applyGradientToIcons: true };
+function writeImages(options = writeImageDefaults) {
+  options = Object.assign({}, writeImageDefaults, options)
+
+  let { source, fillColor, applyGradientToIcons } = options;
+
+  const img = openImage(source + "icon-1024.png");
 
   if (fillColor === "") {
     const canvas = new Canvas(img.width, img.height);
@@ -40,7 +45,7 @@ function writeImages(source = "./images/icon-1024.png", fillColor = "") {
     [144, 144, img, `./resources/android/icon/drawable-xxhdpi-icon.png`],
     [192, 192, img, `./resources/android/icon/drawable-xxxhdpi-icon.png`]
   ].forEach(([width, height, image, path]) =>
-    writeImage(width, height, image, true, path, null, fillColor)
+    writeImage(width, height, image, applyGradientToIcons, path, null, fillColor)
   );
 
   [
