@@ -8,6 +8,7 @@ function writeImages(source = "./images/icon-1024.png", fillColor = "") {
   if (fillColor === "") {
     const canvas = new Canvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
     const rgba = ctx.getImageData(0, 0, 1, 1).data;
     fillColor = `rgba(${rgba.join(",")})`;
   }
@@ -196,8 +197,6 @@ function writeImage(
   const ctx = canvas.getContext("2d");
 
   ctx.drawImage(image, 0, 0);
-
-  const rgba = ctx.getImageData(0, 0, 1, 1).data;
 
   ctx.fillStyle = fillColor;
 
