@@ -80,7 +80,7 @@ function writeImages(options = writeImageDefaults) {
         null,
         fillColor
       )
-    )
+    );
 
     [
       ([
