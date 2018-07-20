@@ -1,10 +1,16 @@
 const Canvas = require("canvas");
 const Image = Canvas.Image;
-const fs = require("fs");
+const fs = require("fs-extra");
 
-const writeImageDefaults = { source: "./images/", fillColor: "", applyGradientToIcons: true };
+const { mkdirpSync } = fs;
+
+const writeImageDefaults = {
+  source: "./images/",
+  fillColor: "",
+  applyGradientToIcons: true
+};
 function writeImages(options = writeImageDefaults) {
-  options = Object.assign({}, writeImageDefaults, options)
+  options = Object.assign({}, writeImageDefaults, options);
 
   let { source, fillColor, applyGradientToIcons } = options;
 
@@ -45,141 +51,186 @@ function writeImages(options = writeImageDefaults) {
     [144, 144, img, `./resources/android/icon/drawable-xxhdpi-icon.png`],
     [192, 192, img, `./resources/android/icon/drawable-xxxhdpi-icon.png`]
   ].forEach(([width, height, image, path]) =>
-    writeImage(width, height, image, applyGradientToIcons, path, null, fillColor)
+    writeImage(
+      width,
+      height,
+      image,
+      applyGradientToIcons,
+      path,
+      null,
+      fillColor
+    )
   );
 
   [
-    [640, 1136, img, "./resources/ios/splash/Default-568h@2x~iphone.png", 512],
-    [
-      1536,
-      2048,
-      img,
-      "./resources/ios/splash/Default-Portrait@2x~ipad.png",
-      512
-    ],
-    [1024, 768, img, "./resources/ios/splash/Default-Landscape~ipad.png", 512],
-    [768, 1024, img, "./resources/ios/splash/Default-Portrait~ipad.png", 512],
-    [1242, 2208, img, "./resources/ios/splash/Default-736h.png", 512],
-    [
-      2732,
-      2048,
-      img,
-      "./resources/ios/splash/Default-Landscape@~ipadpro.png",
-      512
-    ],
-    [320, 480, img, "./resources/ios/splash/Default~iphone.png", 300],
-    [
-      2048,
-      1536,
-      img,
-      "./resources/ios/splash/Default-Landscape@2x~ipad.png",
-      512
-    ],
-    [
-      2048,
-      2732,
-      img,
-      "./resources/ios/splash/Default-Portrait@~ipadpro.png",
-      512
-    ],
-    [
-      2732,
-      2732,
-      img,
-      "./resources/ios/splash/Default@2x~universal~anyany.png",
-      512
-    ],
-    [2208, 1242, img, "./resources/ios/splash/Default-Landscape-736h.png", 512],
-    [640, 960, img, "./resources/ios/splash/Default@2x~iphone.png", 512],
-    [750, 1334, img, "./resources/ios/splash/Default-667h.png", 512],
+    [72, 72, img, `./res/native/android/res/hdpi/notification_icon.png`],
+    [38, 38, img, `./res/native/android/res/ldpi/notification_icon.png`],
+    [48, 48, img, `./res/native/android/res/mdpi/notification_icon.png`],
+    [96, 96, img, `./res/native/android/res/xhdpi/notification_icon.png`],
+    [144, 144, img, `./res/native/android/res/xxhdpi/notification_icon.png`],
+    [192, 192, img, `./res/native/android/res/xxxhdpi/notification_icon.png`]
+  ]
+    .forEach(([width, height, image, path]) =>
+      writeImage(
+        width,
+        height,
+        image,
+        applyGradientToIcons,
+        path,
+        null,
+        fillColor
+      )
+    )
 
     [
-      960,
-      1600,
-      img,
-      "./resources/android/splash/drawable-port-xxhdpi-screen.png",
-      512
-    ],
-    [
-      720,
-      128,
-      img,
-      "./resources/android/splash/drawable-port-xhdpi-screen.png",
-      512
-    ],
-    [
-      1280,
-      1920,
-      img,
-      "./resources/android/splash/drawable-port-xxxhdpi-screen.png",
-      512
-    ],
-    [
-      1600,
-      960,
-      img,
-      "./resources/android/splash/drawable-land-xxhdpi-screen.png",
-      512
-    ],
-    [
-      1280,
-      720,
-      img,
-      "./resources/android/splash/drawable-land-xhdpi-screen.png",
-      512
-    ],
-    [
-      480,
-      800,
-      img,
-      "./resources/android/splash/drawable-port-hdpi-screen.png",
-      512
-    ],
-    [
-      480,
-      320,
-      img,
-      "./resources/android/splash/drawable-land-mdpi-screen.png",
-      300
-    ],
-    [
-      200,
-      320,
-      img,
-      "./resources/android/splash/drawable-port-ldpi-screen.png",
-      128
-    ],
-    [
-      1920,
-      1280,
-      img,
-      "./resources/android/splash/drawable-land-xxxhdpi-screen.png",
-      512
-    ],
-    [
-      320,
-      480,
-      img,
-      "./resources/android/splash/drawable-port-mdpi-screen.png",
-      300
-    ],
-    [
-      320,
-      200,
-      img,
-      "./resources/android/splash/drawable-land-ldpi-screen.png",
-      200
-    ],
-    [
-      800,
-      480,
-      img,
-      "./resources/android/splash/drawable-land-hdpi-screen.png",
-      300
-    ]
-  ].forEach(([width, height, image, path, size]) =>
-    writeImage(width, height, image, false, path, size, fillColor)
-  );
+      ([
+        640,
+        1136,
+        img,
+        "./resources/ios/splash/Default-568h@2x~iphone.png",
+        512
+      ],
+      [
+        1536,
+        2048,
+        img,
+        "./resources/ios/splash/Default-Portrait@2x~ipad.png",
+        512
+      ],
+      [
+        1024,
+        768,
+        img,
+        "./resources/ios/splash/Default-Landscape~ipad.png",
+        512
+      ],
+      [768, 1024, img, "./resources/ios/splash/Default-Portrait~ipad.png", 512],
+      [1242, 2208, img, "./resources/ios/splash/Default-736h.png", 512],
+      [
+        2732,
+        2048,
+        img,
+        "./resources/ios/splash/Default-Landscape@~ipadpro.png",
+        512
+      ],
+      [320, 480, img, "./resources/ios/splash/Default~iphone.png", 300],
+      [
+        2048,
+        1536,
+        img,
+        "./resources/ios/splash/Default-Landscape@2x~ipad.png",
+        512
+      ],
+      [
+        2048,
+        2732,
+        img,
+        "./resources/ios/splash/Default-Portrait@~ipadpro.png",
+        512
+      ],
+      [
+        2732,
+        2732,
+        img,
+        "./resources/ios/splash/Default@2x~universal~anyany.png",
+        512
+      ],
+      [
+        2208,
+        1242,
+        img,
+        "./resources/ios/splash/Default-Landscape-736h.png",
+        512
+      ],
+      [640, 960, img, "./resources/ios/splash/Default@2x~iphone.png", 512],
+      [750, 1334, img, "./resources/ios/splash/Default-667h.png", 512],
+      [
+        960,
+        1600,
+        img,
+        "./resources/android/splash/drawable-port-xxhdpi-screen.png",
+        512
+      ],
+      [
+        720,
+        128,
+        img,
+        "./resources/android/splash/drawable-port-xhdpi-screen.png",
+        512
+      ],
+      [
+        1280,
+        1920,
+        img,
+        "./resources/android/splash/drawable-port-xxxhdpi-screen.png",
+        512
+      ],
+      [
+        1600,
+        960,
+        img,
+        "./resources/android/splash/drawable-land-xxhdpi-screen.png",
+        512
+      ],
+      [
+        1280,
+        720,
+        img,
+        "./resources/android/splash/drawable-land-xhdpi-screen.png",
+        512
+      ],
+      [
+        480,
+        800,
+        img,
+        "./resources/android/splash/drawable-port-hdpi-screen.png",
+        512
+      ],
+      [
+        480,
+        320,
+        img,
+        "./resources/android/splash/drawable-land-mdpi-screen.png",
+        300
+      ],
+      [
+        200,
+        320,
+        img,
+        "./resources/android/splash/drawable-port-ldpi-screen.png",
+        128
+      ],
+      [
+        1920,
+        1280,
+        img,
+        "./resources/android/splash/drawable-land-xxxhdpi-screen.png",
+        512
+      ],
+      [
+        320,
+        480,
+        img,
+        "./resources/android/splash/drawable-port-mdpi-screen.png",
+        300
+      ],
+      [
+        320,
+        200,
+        img,
+        "./resources/android/splash/drawable-land-ldpi-screen.png",
+        200
+      ],
+      [
+        800,
+        480,
+        img,
+        "./resources/android/splash/drawable-land-hdpi-screen.png",
+        300
+      ])
+    ].forEach(([width, height, image, path, size]) =>
+      writeImage(width, height, image, false, path, size, fillColor)
+    );
 }
 
 function openImage(path) {
@@ -198,6 +249,13 @@ function writeImage(
   size,
   fillColor
 ) {
+  mkdirpSync(
+    savePath
+      .split("/")
+      .slice(0, -1)
+      .join("/")
+  );
+
   const canvas = new Canvas(width, height);
   const ctx = canvas.getContext("2d");
 
