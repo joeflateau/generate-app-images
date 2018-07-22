@@ -63,12 +63,12 @@ function writeImages(options = writeImageDefaults) {
   );
 
   [
-    [72, 72, img, `./res/native/android/res/hdpi/notification_icon.png`],
-    [38, 38, img, `./res/native/android/res/ldpi/notification_icon.png`],
-    [48, 48, img, `./res/native/android/res/mdpi/notification_icon.png`],
-    [96, 96, img, `./res/native/android/res/xhdpi/notification_icon.png`],
-    [144, 144, img, `./res/native/android/res/xxhdpi/notification_icon.png`],
-    [192, 192, img, `./res/native/android/res/xxxhdpi/notification_icon.png`]
+    [72, 72, img, `./res/native/android/res/drawable-hdpi/notification_icon.png`],
+    [38, 38, img, `./res/native/android/res/drawable-ldpi/notification_icon.png`],
+    [48, 48, img, `./res/native/android/res/drawable-mdpi/notification_icon.png`],
+    [96, 96, img, `./res/native/android/res/drawable-xhdpi/notification_icon.png`],
+    [144, 144, img, `./res/native/android/res/drawable-xxhdpi/notification_icon.png`],
+    [192, 192, img, `./res/native/android/res/drawable-xxxhdpi/notification_icon.png`]
   ]
     .forEach(([width, height, image, path]) =>
       writeImage(
