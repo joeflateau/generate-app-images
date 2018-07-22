@@ -2,7 +2,7 @@ const Canvas = require("canvas");
 const Image = Canvas.Image;
 const fs = require("fs-extra");
 
-const { mkdirpSync } = fs;
+const { mkdirpSync, existsSync } = fs;
 
 const writeImageDefaults = {
   source: "./images/",
